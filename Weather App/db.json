@@ -1,69 +1,19 @@
 {
-  "doctors": [
+  "loginData": [
     {
-      "id": 1,
-      "name": "محمد مهدی متقی",
-      "expertise": "دندانپزشک",
-      "week": {
-        "شنبه": false,
-        "یکشنبه": true,
-        "دوشنبه": true,
-        "سه‌شنبه": true,
-        "چهارشنبه": true,
-        "پنجشنبه": true,
-        "جمعه": true
-      }
-    },
-    {
-      "id": 2,
-      "name": "مهدی روحی",
-      "expertise": "مغز و اعصاب",
-      "week": {
-        "شنبه": false,
-        "یکشنبه": true,
-        "دوشنبه": true,
-        "سه‌شنبه": true,
-        "چهارشنبه": true,
-        "پنجشنبه": true,
-        "جمعه": true
-      }
-    },
-    {
-      "id": 3,
-      "name": "زهرا کاروان",
-      "expertise": "روانشناس",
-      "week": {
-        "شنبه": true,
-        "یکشنبه": true,
-        "دوشنبه": true,
-        "سه‌شنبه": true,
-        "چهارشنبه": true,
-        "پنجشنبه": true,
-        "جمعه": true
-      }
+      "id": 5,
+      "userName": "mmd",
+      "password": 1234
     },
     {
       "id": 4,
-      "name": "امیرحسین سعیدانژاد",
-      "expertise": "متخصص زیبایی",
-      "week": {
-        "شنبه": true,
-        "یکشنبه": true,
-        "دوشنبه": true,
-        "سه‌شنبه": true,
-        "چهارشنبه": true,
-        "پنجشنبه": true,
-        "جمعه": true
-      }
-    }
-  ],
-  "appoinments": [
+      "userName": "ali",
+      "password": 1234
+    },
     {
-      "id": "5b1bc427-8cb2-4785-844e-ef5cb1886d99",
-      "firstName": "x",
-      "lastName": "y",
-      "phoneNumber": "000",
-      "doctor": "محمد مهدی متقی"
+      "userName": "mmdxx",
+      "password": "1234",
+      "id": "df3e3b83-54e4-4c9f-91f8-dda53f0ce044"
     }
   ]
 }
