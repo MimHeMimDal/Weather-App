@@ -1,12 +1,13 @@
 import { Button, Form, TextField } from "@/components";
 import { CheckRegister } from "@/library/CheckRegister";
 import ElementGenerator from "@/library/ElementGernerator";
+import { Routes } from "@/routes";
 
 export const RegisterPage = function () {
   return ElementGenerator({
     element: "div",
     className:
-      "absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 h-2/3 w-2/3 bg-[#2C74B3] border px-5",
+      "absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 w-2/3 bg-[#2C74B3] border px-5 py-5",
     onsubmit: CheckRegister,
     child: [
       Form({
@@ -45,9 +46,18 @@ export const RegisterPage = function () {
       }),
       ElementGenerator({
         element: "div",
+        className: "flex flex-col sm:flex-row gap-2",
         child: [
           ElementGenerator({ element: "span", child: "You have an account?" }),
-          ElementGenerator({ element: "span", child: "Sign in" }),
+          ElementGenerator({
+            element: "span",
+            child: "Sign in",
+            className: "text-white hover:text-[#000] cursor-pointer",
+            onclick: () => {
+              history.pushState(null, null, "/login");
+              Routes();
+            },
+          }),
         ],
       }),
     ],

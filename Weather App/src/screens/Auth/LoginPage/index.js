@@ -1,6 +1,7 @@
 import { Button, Form, TextField } from "@/components";
 import { CheckLogin } from "@/library/CheckLogin";
 import ElementGenerator from "@/library/ElementGernerator";
+import { Routes } from "@/routes";
 
 export const LoginPage = function () {
   return ElementGenerator({
@@ -39,9 +40,18 @@ export const LoginPage = function () {
       }),
       ElementGenerator({
         element: "div",
+        className: "flex flex-col sm:flex-row gap-2",
         child: [
           ElementGenerator({ element: "span", child: "Dont have an account?" }),
-          ElementGenerator({ element: "span", child: "Sign up" }),
+          ElementGenerator({
+            element: "span",
+            child: "Sign up",
+            className: "text-white hover:text-[#000] cursor-pointer",
+            onclick: () => {
+              history.pushState(null, null, "/register");
+              Routes();
+            },
+          }),
         ],
       }),
     ],

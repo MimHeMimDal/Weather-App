@@ -4,7 +4,7 @@ export const TextField = function ({
   id,
   parentClass,
   labelChild,
-  name,
+  // name,
   ...rest
 }) {
   return ElementGenerator({
@@ -15,14 +15,14 @@ export const TextField = function ({
         element: "label",
         className: "flex items-center",
         for: id,
-        name,
+        name: id,
         child: labelChild,
       }),
       ElementGenerator({
         element: "input",
         className: "w-full rounded",
         id,
-        name,
+        name: id,
         ...rest,
       }),
       ElementGenerator({
