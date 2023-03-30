@@ -2,6 +2,7 @@ import { PostData } from "@/library/PostData";
 import { GetData } from "./GetData";
 import { Routes } from "@/routes";
 import Cookies from "js-cookie";
+import { Toast } from "@/components";
 
 export const CheckRegister = function (e) {
   e.preventDefault();
@@ -14,7 +15,7 @@ export const CheckRegister = function (e) {
   ).then((data) => {
     if (data.length !== 0) {
       userNameRegister.nextElementSibling.textContent =
-        "* This user is already taken";
+        "* This username is already taken";
       console.log(userNameRegister);
       userNameRegister.addEventListener("keyup", (e) => {
         e.target.nextElementSibling.textContent = "";
@@ -23,6 +24,8 @@ export const CheckRegister = function (e) {
       //   history.pushState(null, null, "/weather");
       //   Routes();
       if (passwordRegister.value !== rePasswordRegister.value) {
+        rePasswordRegister.classList.add("border-red-700");
+        passwordRegister.classList.add("border-red-700");
         rePasswordRegister.nextElementSibling.textContent =
           "Passwords Does Not Match";
         passwordRegister.nextElementSibling.textContent =
@@ -36,6 +39,13 @@ export const CheckRegister = function (e) {
             id: crypto.randomUUID(),
           },
         });
+        document.body.append(Toast({ mode: "success" }));
+        document.getElementById("closeBtn").addEventListener("click", () => {
+          document.getElementById("toast-success").remove();
+        });
+        setTimeout(() => {
+          document.getElementById("toast-success").remove();
+        }, 1500);
         history.pushState(null, null, "/weather");
         Cookies.set("token", `${userNameRegister.value}token`);
         Routes();

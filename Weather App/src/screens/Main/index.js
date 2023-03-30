@@ -2,7 +2,7 @@ import { Button, Card, Header, IsLoading } from "@/components";
 import { data, GetFromLocal, SetToLocal } from "@/data";
 import ElementGenerator from "@/library/ElementGernerator";
 import { GetData } from "@/library/GetData";
-import { HandleLastSearch } from "@/library/HandleLastSearch";
+import { CloseSearch, HandleLastSearch } from "@/library/HandleLastSearch";
 import { Logout } from "@/library/Logout";
 import { debounce } from "lodash";
 
@@ -12,15 +12,17 @@ export const Main = function () {
     className: "h-screen",
     child: [
       Header({
+        className: "flex items-center justify-between px-10 py-5",
         child: [
-          Button({ variant: "normal", child: "Logout", onclick: Logout }),
           ElementGenerator({
             element: "div",
             className: "relative",
             child: [
               ElementGenerator({
                 element: "input",
-                className: "px-2",
+                id: "lastSearchInput",
+                placeholder: "Enter your city...",
+                className: "px-2 py-1 rounded",
                 onkeyup: debounce((e) => {
                   document.getElementById("cardsContainer").innerHTML = "";
                   if (e.target.value.trim() !== "") {
@@ -37,6 +39,14 @@ export const Main = function () {
                           const tempArr = GetFromLocal();
                           tempArr.push(data.location.name);
                           SetToLocal(tempArr);
+                          e.target.value = "";
+                          document
+                            .getElementById("lastSearch")
+                            .classList.remove("h-48");
+                          document
+                            .getElementById("lastSearch")
+                            .classList.add("h-0");
+                          document.getElementById("lastSearch").innerHTML = "";
                         } else {
                           document
                             .getElementById("cardsContainer")
@@ -47,30 +57,62 @@ export const Main = function () {
                   }
                 }, 800),
                 onfocus: (e) => {
-                  console.log(e.target);
+                  // console.log(e.target);
                   document.getElementById("lastSearch").classList.remove("h-0");
-                  document.getElementById("lastSearch").classList.add("h-40");
+                  document.getElementById("lastSearch").classList.add("h-48");
                   document
                     .getElementById("lastSearch")
                     .append(HandleLastSearch());
+                  document.body.addEventListener("click", CloseSearch);
                 },
-                onblur: (e) => {
-                  console.log(e.target);
-                  document
-                    .getElementById("lastSearch")
-                    .classList.remove("h-40");
-                  document.getElementById("lastSearch").classList.add("h-0");
-                  document.getElementById("lastSearch").innerHTML = "";
+                onchange: (e) => {
+                  console.log("hello");
+                  const cardContainer =
+                    document.getElementById("cardsContainer");
+                  cardContainer.innerHTML = "";
+                  cardContainer.append(IsLoading());
+                  GetData(data.weatherApiUrl + `&q=${e.target.value}`).then(
+                    (data) => {
+                      document.getElementById("isLoading").remove();
+                      cardContainer.append(Card(data));
+                      const tempArr = GetFromLocal();
+                      tempArr.push(data.location.name);
+                      SetToLocal(tempArr);
+                      e.target.value = "";
+                      document
+                        .getElementById("lastSearch")
+                        .classList.remove("h-48");
+                      document
+                        .getElementById("lastSearch")
+                        .classList.add("h-0");
+                      document.getElementById("lastSearch").innerHTML = "";
+                    }
+                  );
                 },
               }),
               ElementGenerator({
                 element: "div",
                 id: "lastSearch",
                 className:
-                  "absolute top-6 left-0 duration-300 h-0 w-full bg-red-600",
+                  "absolute top-9 left-0 duration-300 h-0 w-full bg-[#144272] text-white",
                 // child: HandleLastSearch(),
               }),
             ],
+          }),
+          ElementGenerator({
+            element: "div",
+            className: "h-16 w-16 flex items-center justify-center",
+            child: ElementGenerator({
+              element: "img",
+              className: "h-full w-full flex items-center justify-center",
+              src: "./src/assets/logo/Circle-icons-weather.svg.png",
+            }),
+          }),
+          Button({
+            variant: "normal",
+            child: "Logout",
+            onclick: Logout,
+            className: "h-10",
           }),
         ],
       }),

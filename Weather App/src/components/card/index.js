@@ -5,22 +5,30 @@ export const Card = function (obj) {
   return ElementGenerator({
     element: "div",
     className:
-      "flex flex-col bg-[#205295] rounded py-2 px-4 text-center text-white",
+      "flex flex-col items-center justify-center gap-2 bg-[#205295] w-[200px] rounded py-4 px-4 text-center text-white text-2xl",
     child: [
       ElementGenerator({
         element: "div",
+        className: "flex items-center justify-center w-[70px] h-[70px]",
         child: ElementGenerator({
           element: "img",
+          className: "h-full w-full",
           src: obj.current.condition.icon,
         }),
       }),
       ElementGenerator({
         element: "div",
+        child: obj.current.condition.text,
+      }),
+      ElementGenerator({
+        element: "div",
+        className: "text-sm",
         child: obj.location.name,
       }),
       ElementGenerator({
         element: "div",
-        child: obj.current.temp_c + "°C",
+        className: "text-sm",
+        child: `Temp: ${obj.current.temp_c}°C`,
       }),
     ],
   });

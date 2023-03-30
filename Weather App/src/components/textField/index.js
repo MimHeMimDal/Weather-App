@@ -20,7 +20,7 @@ export const TextField = function ({
       }),
       ElementGenerator({
         element: "input",
-        className: "w-full rounded",
+        className: "w-full rounded border-2",
         id,
         name: id,
         ...rest,

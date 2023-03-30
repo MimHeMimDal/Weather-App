@@ -14,7 +14,7 @@ export const Modal = function ({ id, child, modalClass }) {
     child: [
       ElementGenerator({
         element: "div",
-        className: `absolute w-1/3 h-1/2 z-20 rounded-md bg-slate-800 ${modalClass}`,
+        className: `absolute w-[400px] h-[200px] z-20 rounded-md bg-slate-800 ${modalClass}`,
         child,
       }),
     ],

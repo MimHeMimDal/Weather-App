@@ -1,6 +1,7 @@
 import { GetData } from "./GetData";
 import Cookies from "js-cookie";
 import { Routes } from "@/routes";
+import { Toast } from "@/components";
 
 export const CheckLogin = function (e) {
   e.preventDefault();
@@ -12,12 +13,26 @@ export const CheckLogin = function (e) {
     `http://localhost:3000/loginData?userName=${userName.value}&&password=${password.value}`
   ).then((data) => {
     if (data.length === 1) {
-      alert("user found");
+      document.body.append(Toast({ mode: "success" }));
+      document.getElementById("closeBtn").addEventListener("click", () => {
+        document.getElementById("toast-success").remove();
+      });
+      setTimeout(() => {
+        document.getElementById("toast-success").remove();
+      }, 1500);
       Cookies.set("token", "usermmd", { expires: 2 });
       history.pushState(null, null, "/weather");
       Routes();
     } else {
-      alert("Wrong username or password");
+      document.body.append(Toast({ mode: "failed" }));
+      document.getElementById("closeBtn").addEventListener("click", () => {
+        document.getElementById("toast-danger").remove();
+      });
+      setTimeout(() => {
+        document.getElementById("toast-danger").remove();
+      }, 1500);
+      // console.log(Toast());
+      // console.log(document.getElementById("toast-danger"));
     }
   });
   e.target.closest("form").reset();

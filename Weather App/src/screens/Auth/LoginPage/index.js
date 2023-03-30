@@ -7,17 +7,20 @@ export const LoginPage = function () {
   return ElementGenerator({
     element: "div",
     className:
-      "absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 h-2/3 w-2/3 bg-[#2C74B3] border px-5",
+      "absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-[#2C74B3] w-2/3 max-w-xs border rounded-xl px-5 py-5",
     onsubmit: CheckLogin,
     child: [
       Form({
         id: "login-form",
-        className: "flex flex-col items-center justify-between gap-2 py-5",
+        className: "flex flex-col items-center justify-between gap-2 pb-5",
         child: [
           ElementGenerator({
             element: "div",
-            className: "text-white",
-            child: "Welcome",
+            className: "h-20 w-20 flex items-center justify-center",
+            child: ElementGenerator({
+              element: "img",
+              src: "./src/assets/logo/Circle-icons-weather.svg.png",
+            }),
           }),
           TextField({
             parentClass: "w-full",
@@ -34,6 +37,7 @@ export const LoginPage = function () {
           Button({
             type: "submit",
             child: "Login",
+            className: "w-full",
             variant: "normal",
           }),
         ],

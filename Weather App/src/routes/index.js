@@ -1,5 +1,6 @@
 import { LoginPage, RegisterPage } from "@/screens/Auth";
 import { Main } from "@/screens/Main";
+import { PageNotFound } from "@/screens/PageNotFound";
 import Cookies from "js-cookie";
 
 export const Routes = function () {
@@ -27,12 +28,12 @@ export const Routes = function () {
       if (Cookies.get("token")) {
         app.append(Main());
       } else {
-        app.innerHTML = "Login First";
+        app.append(PageNotFound({ msg: "Please Login First", login: true }));
       }
       break;
 
     default:
-      app.innerHTML = "Page not found";
+      app.append(PageNotFound({ msg: "Requested Page Not Found" }));
       break;
   }
 };

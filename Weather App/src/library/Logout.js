@@ -19,16 +19,20 @@ export const Logout = function (e) {
           }),
           ElementGenerator({
             element: "div",
-            className: "flex gap-3 w-full justify-center",
+            className: "flex gap-5 w-full justify-center",
             child: [
               Button({
                 child: "Cancel",
+                className:
+                  "px-2 py-1 bg-red-500 rounded w-[100px] h-[30px] flex items-center justify-center",
                 onclick: () => {
                   document.getElementById("logout").remove();
                 },
               }),
               Button({
                 child: "Yes",
+                className:
+                  "px-2 py-1 bg-green-500 rounded w-[100px] h-[30px] flex items-center justify-center",
                 onclick: () => {
                   Cookies.remove("token");
                   history.pushState(null, null, "/");
