@@ -8,10 +8,10 @@ export const CheckLogin = function (e) {
   //   console.log(e.target.closest("form").elements);
   const { passwordLogin: password, userNameLogin: userName } =
     e.target.closest("form").elements;
-
   GetData(
     `http://localhost:3000/loginData?userName=${userName.value}&&password=${password.value}`
   ).then((data) => {
+    console.log(data);
     if (data.length === 1) {
       document.body.append(Toast({ mode: "success" }));
       document.getElementById("closeBtn").addEventListener("click", () => {

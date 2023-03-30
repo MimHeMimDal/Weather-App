@@ -11,7 +11,7 @@ export const Logout = function (e) {
       id: "logout",
       child: ElementGenerator({
         element: "div",
-        className: "h-full flex flex-col items-center justify-center gap-5",
+        className: "h-full flex flex-col items-center justify-between py-10",
         child: [
           ElementGenerator({
             element: "div",
